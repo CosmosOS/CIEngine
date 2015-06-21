@@ -1,0 +1,11 @@
+bin
+obj
+_Resharper.*
+*.user
+*.suo
+*.nuspec
+*.nupkg
+Output/
+Sources/TestResults/
+Sources/Packages/**/*
+_Output/
