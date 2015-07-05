@@ -31,6 +31,13 @@ namespace Cosmos.CIEngine.Data
             set;
         }
 
+        [MaxLength(250)]
+        public string Repository
+        {
+            get;
+            set;
+        }
+
         public BuildStateEnum State
         {
             get;
