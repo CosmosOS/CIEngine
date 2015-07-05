@@ -12,10 +12,16 @@ namespace Cosmos.CIEngine.Shell
             {
                 Console.WriteLine("Starting Cosmos CI Engine");
                 var xEngine = new Engine();
+
+                // for now hardcode configuration:
+                xEngine.GithubOrganisation = "CosmosOS";
+                xEngine.GithubRepository = "CIEngine";
+                //xEngine.GithubRepository = "Cosmos";
+
                 xEngine.HandleError = e => Console.WriteLine("Error occurred in engine: " + e.ToString());
                 xEngine.Start();
-                Console.WriteLine("Started. Press enter to exit");
-                xEngine.Stop();
+                //Console.WriteLine("Started. Press enter to exit");
+                //xEngine.Stop();
             }
             catch (Exception E)
             {

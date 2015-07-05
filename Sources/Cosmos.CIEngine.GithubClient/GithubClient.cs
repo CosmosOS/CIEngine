@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Cache;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -16,8 +17,10 @@ namespace Cosmos.CIEngine.GithubClient
 
         public GithubClient()
         {
-            mHttpClient = new HttpClient();
-
+            mHttpClient = new HttpClient(new WebRequestHandler
+                                         {
+                                             CachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.CacheIfAvailable)
+                                         });
             mHttpClient.DefaultRequestHeaders.Add("User-agent", "CosmosCIEngine");
             mHttpClient.BaseAddress = new Uri("https://api.github.com/");
         }
@@ -28,7 +31,7 @@ namespace Cosmos.CIEngine.GithubClient
             var xCurrentPage = 1;
             var xUrlList = new List<string>();
             var xResultList = new List<Event>();
-            string xResultETag = null;
+            string xResultETag = currentETag;
             string xUrlToGet = String.Format("/repos/{0}/{1}/events?page={2}&per_page={3}", owner, repository, xCurrentPage, pageSize);
             do
             {
@@ -59,7 +62,13 @@ namespace Cosmos.CIEngine.GithubClient
                 xResultList.AddRange(xResultItems);
                 xUrlList.Add(xUrlToGet);
 
-                var xLink = xResult.Headers.GetValues("Link").Single();
+                IEnumerable<string> xLinkValues;
+                if (!xResult.Headers.TryGetValues("Link", out xLinkValues))
+                {
+                    break;
+                }
+
+                var xLink = xLinkValues.Single();
                 //Link: <https://api.github.com/repositories/27551693/events?page=1&per_page=100>; rel="first", <https://api.github.com/repositories/27551693/events?page=2&per_page=100>; rel="prev"
                 if (!xLink.Contains('>'))
                 {

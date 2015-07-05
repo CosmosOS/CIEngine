@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Cosmos.CIEngine
+namespace Cosmos.CIEngine.Data
 {
     public class ConfigObj: BaseDataObject
     {

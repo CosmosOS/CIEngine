@@ -38,6 +38,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -54,14 +58,18 @@
     <Compile Include="Engine.Main.cs">
       <DependentUpon>Engine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Engine.ProcessEvents.cs">
+      <DependentUpon>Engine.cs</DependentUpon>
+    </Compile>
     <Compile Include="Engine.RetrieveGithubEvents.cs">
       <DependentUpon>Engine.cs</DependentUpon>
     </Compile>
-    <Compile Include="_Data\DataContext.cs" />
-    <Compile Include="_Data\_Objects\BaseDataObject.cs" />
-    <Compile Include="_Data\_Objects\ConfigObj.cs" />
+    <Compile Include="Data\DataContext.cs" />
+    <Compile Include="Data\_Objects\BaseDataObject.cs" />
+    <Compile Include="Data\_Objects\ConfigObj.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Data\_Objects\EventObj.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -72,6 +80,9 @@
       <Project>{61AE8C0A-C9BE-428D-B8E8-F85B13AEF1B8}</Project>
       <Name>Cosmos.CIEngine.GithubClient</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\_Objects\_Events\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
