@@ -31,7 +31,7 @@ namespace Cosmos.CIEngine.GithubClient
             var xCurrentPage = 1;
             var xUrlList = new List<string>();
             var xResultList = new List<Event>();
-            string xResultETag = currentETag;
+            string xResultETag = null;
             string xUrlToGet = String.Format("/repos/{0}/{1}/events?page={2}&per_page={3}", owner, repository, xCurrentPage, pageSize);
             do
             {
@@ -45,6 +45,10 @@ namespace Cosmos.CIEngine.GithubClient
                 var xResult = await mHttpClient.SendAsync(xRequest, HttpCompletionOption.ResponseHeadersRead);
                 if (xResult.StatusCode == HttpStatusCode.NotModified)
                 {
+                    if (xResultETag == null)
+                    {
+                        xResultETag = currentETag;
+                    }
                     break;
                 }
 

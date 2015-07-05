@@ -11,7 +11,7 @@ namespace Cosmos.CIEngine
     {
         private const string GithubPollingETagConfigName = "PreviousEtag";
 
-        private async Task RetrieveAndParseGithubEvents()
+        private async Task RetrieveAndParseGithubEventsAsync()
         {
             using (var xCtx = new DataContext())
             {
@@ -38,7 +38,7 @@ namespace Cosmos.CIEngine
                     xEvent.EventId = xItem.id;
                     xEvent.Type = xItem.type;
                     xEvent.CreatedAt = xItem.created_at;
-                    xEvent.Payload = JsonConvert.SerializeObject(xItem.payload);
+                    xEvent.Payload = xItem.payload.ToString();
                     xCtx.Events.Add(xEvent);
                     xCtx.SaveChanges();
                 }
@@ -47,5 +47,7 @@ namespace Cosmos.CIEngine
                 xCtx.SaveChanges();
             }
         }
+
+
     }
 }

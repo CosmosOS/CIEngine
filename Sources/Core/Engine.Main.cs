@@ -19,9 +19,12 @@ namespace Cosmos.CIEngine
             {
                 while (true)
                 {
-                    //await RetrieveAndParseGithubEvents();
+                    //await RetrieveAndParseGithubEventsAsync();
 
-                    await ProcessRetrievedEventsAsync();
+                    //DumpItems();
+
+                    //await ProcessRetrievedEventsAsync();
+
 
                     //Thread.Sleep(EngineSleepTimeMsecs);
                     break;

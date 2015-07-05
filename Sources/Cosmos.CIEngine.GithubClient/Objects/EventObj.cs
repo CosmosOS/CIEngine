@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json.Linq;
 
 namespace Cosmos.CIEngine.GithubClient.Objects
 {
@@ -29,7 +30,7 @@ namespace Cosmos.CIEngine.GithubClient.Objects
             set;
         }
 
-        public Payload payload
+        public JObject payload
         {
             get;
             set;

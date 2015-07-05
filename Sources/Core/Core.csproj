@@ -52,10 +52,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Enums.cs" />
+    <Compile Include="Data\_Objects\BuildObj.cs" />
     <Compile Include="Engine.Github.cs">
       <DependentUpon>Engine.cs</DependentUpon>
     </Compile>
     <Compile Include="Engine.Main.cs">
+      <DependentUpon>Engine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Engine.Misc.cs">
       <DependentUpon>Engine.cs</DependentUpon>
     </Compile>
     <Compile Include="Engine.ProcessEvents.cs">

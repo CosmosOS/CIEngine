@@ -47,5 +47,11 @@ namespace Cosmos.CIEngine.Data
             get;
             set;
         }
+
+        //public DbSet<BuildObj> Builds
+        //{
+        //    get;
+        //    set;
+        //}
     }
 }
